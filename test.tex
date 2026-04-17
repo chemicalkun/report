@@ -1,0 +1,53 @@
+\documentclass[uplatex, a4paper, 11pt]{jsarticle}
+
+% --- パッケージの読み込み ---
+\usepackage[utf8]{inputenc}
+\usepackage[dvipdfmx]{graphicx} % 画像（ChemDrawなど）の挿入用
+\usepackage{amsmath, amssymb}   % 数式用
+\usepackage[version=4]{mhchem}  % 化学反応式用（\ce{}で記述）
+\usepackage{siunitx}            % 単位用（\SI{10.5}{g/mol}など）
+\usepackage{geometry}           % 余白設定用
+\geometry{left=25mm,right=25mm,top=30mm,bottom=30mm}
+
+% --- タイトル情報 ---
+\title{第○回 実験レポート：〇〇の合成と評価}
+\author{福山 聖太}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{目的}
+本実験では、……の合成を行い、その構造をNMRおよびIRにより特定することを目的とする。
+
+\section{実験方法}
+\subsection{試薬および器具}
+特記ない限り、購入した試薬をそのまま用いた。
+\begin{itemize}
+    \item スチレン（精製済み）
+    \item アゾビスイソブチロニトリル (AIBN)
+\end{itemize}
+
+\subsection{合成手順}
+以下の反応式に従い、ラジカル重合を行った。
+\begin{equation}
+    % mhchemを使った重合反応の例
+    \ce{\mathit{n} CH2=CH(Ph) ->[AIBN][\Delta] -[ CH2-CH(Ph) ]_{\mathit{n}}}
+\end{equation}
+
+\section{結果と考察}
+得られた高分子の数平均分子量（$M_n$）は \SI{1.5e4}{g/mol}、分散度（$M_w/M_n$）は \SI{1.20}{} であった。
+
+% 画像を挿入する場合のテンプレート（コメントアウト解除して使用）
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=10cm]{scheme1.pdf}
+%     \caption{合成スキーム}
+%     \label{fig:scheme1}
+% \end{figure}
+
+\section{結論}
+……を合成することに成功した。
+
+\end{document}
