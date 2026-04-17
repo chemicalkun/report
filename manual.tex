@@ -1,0 +1,89 @@
+% !TEX encoding = UTF-8
+% !TEX program = lualatex
+
+\documentclass[lualatex,ja=standard]{bxjsarticle}
+
+% --- パッケージ設定 ---
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{url}
+% hyperrefは最後に読み込み、[hidelinks]で赤枠を消します
+\usepackage[hidelinks,pdfpagemode=UseNone]{hyperref}
+
+% --- コードブロックのデザイン設定 ---
+\lstset{
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    backgroundcolor=\color{gray!10},
+    rulecolor=\color{gray!30},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    showstringspaces=false
+}
+
+\title{Mac用　Windows仮想環境構築マニュアル}
+\author{作成者　福山翔太}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents 
+\newpage
+
+\section{初めに}
+これは、macOS上でWindowsアプリケーションを利用するために、Mac内にWindows仮想環境を構築するマニュアルです。
+VMware Fusionというソフトを使います。
+
+\section{構築手順}
+\subsection{VMware Fusionのインストール}
+\begin{enumerate}[label=\arabic*.]
+    \item 公式サイト（\url{https://support.broadcom.com}）にアクセスし、左のメニューのlog inからアカウントを作成する。
+    \item ログイン後、右上の雲をクリックし、VMware Cloud Foundationを選ぶ。
+    \item ページ左上のMENUから My Downloads を選ぶ。
+    \item 青い枠内のFree Software Downloads available HERE をクリックする。
+    \item 検索欄にVMware Fusionと入力し、同じ名前のものを選択する。
+    \item 一番上のバージョンを選ぶ。(作成時は25H2)
+    \item 25H2u1を選ぶ。
+    \item 規約を開いてチェックを入れる。
+    \item 雲のマークからダウンロードする。
+    \item ダウンロードした .dmgファイルをダブルクリックし、表示されたアイコンをダブルクリック。
+    \item 指示に従ってインストール完了。
+\end{enumerate}
+＊この時点では仮想マシンはMacに認識されていないため、画面間のカーソル移動がカクついたり、コピー＆ペーストができないので注意。
+
+\subsection{Windowsのインストール}
+\begin{enumerate}[label=\arabic*.]
+    \item MicrosoftからWindowsを取得を選択する。
+    \item ダウンロードが完了したら続けるをクリックし、指示通り進む。
+    \item ファームウェアはUEFIを選び、暗号化パスワードを決める。
+    \item 新しい仮想ディスクを作成を選ぶ。
+    \item 設定の詳細が表示され、終了をクリック。
+    \item 保存場所を選択し、保存。
+    \item 黒い画面に大きな再生ボタンが出たらクリックし、指示通り進む。
+    \item セットアップオプションでは「Windowsのインストール」を選択する。
+    \item プロダクトキーがありませんをクリックする。
+    \item Windows Home を選択。
+    \item Windows起動後、メニューバーの「仮想マシン」から「VMware Tools のインストール」を選択する。
+    \item エクスプローラーでDVDドライブ内の \texttt{setup.exe} を実行する。
+    \item インストール完了後、Windowsを再起動する。
+\end{enumerate}
+
+\section{ChromatoPROダウンロード}
+\begin{enumerate}[label=\arabic*.]
+    \item 仮想マシン内のEdgeで、以下のURLにアクセスし、.NET Framework 2.0 SP2をダウンロードする。\\
+    % URL内の特殊文字エラーを防ぐためverbを使用
+    \verb|https://www.microsoft.com/ja-jp/download/details.aspx?id=9834|
+    
+    \item 検索バーに「cmd」と入力し、コマンドプロンプトを「管理者として実行」する。
+    
+    \item 黒い画面に以下のコマンドを貼り付ける。\\
+    \verb|DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /LimitAccess /Source:D:\sources\sxs|
+    
+    \item 「正常に終了しました」と表示されたら、ChromatoProのインストールが可能になる。
+\end{enumerate}
+
+\end{document}
